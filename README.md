@@ -14,6 +14,6 @@ The general plan for today is:
 
 2. **Install some of the required R packages**. This can be done directly within the R Studio environment through the 'Packages' tab of the bottom left panel or running the following:
 ```
-> install.packages(c("rgdal", "raster", "sp", "sf", "tmap","tmaptools"), dependencies = T)
+install.packages(c("rgdal", "raster", "sp", "sf", "tmap","tmaptools"), dependencies = T)
 ```
 3. Download all the files from this repository to your local machine. If you already have Git installed, the easiest way to do this will be by running `git clone https://github.com/em-bellis/ASRI2021` from the command line in the location you would like to download the repo. You can also download a zip file of the repository contents from the landing page. 
