@@ -1,0 +1,67 @@
+---
+title: "Spatial Data in R"
+author: "ASRI 2021"
+date: "6/17/2021"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Spatial data structures
+## Raster Data
+<center>
+- pixelated data where each pixel associated with a specific location.
+- associated with:
+  - an **extent** (geographic area that the raster covers),
+  - a **resolution** (area covered by each pixel), and 
+  - a **coordinate reference system (CRS)** (describes how location on a 2-D map is related to location on 3-D Earth)
+
+![Image borrowed from Data Carpentry Introduction to Geospatial Concepts lesson](raster_concept.png){width=50%}
+
+</center>
+
+In R, we can explore raster files with the help of several useful packages like `raster`. To illustrate, let's download a raster of land use in Arkansas, available [(here)](https://gis.arkansas.gov/product/land-use-land-cover-spring-2004-raster/).
+```{r, out.height="20%", fig.align="center", fig.keep = 'last' }
+library(raster)
+
+### edit this line to point to place where raster in GeoTIFF file format is stored
+#ar_land_use <- raster('~/Downloads/LULC_SUMMER_CAST2004/LULC_SUMMER_CAST2004.tif')
+
+### plot the raster
+#plot(ar_land_use)
+
+### take a look at the ar_land_use object
+#ar_land_use
+
+### raster manipulation example
+#ar_rice <- calc(ar_land_use, fun=function(x){ x[x != 202] <- NA; return(x)} ) # substitute values all pixels where rice is not grown to 'NA'
+```
+
+## Vector Data
+<center>
+- points, lines and polygons
+- often stored as shapefiles (.shp)
+
+![Image borrowed from Data Carpentry Introduction to Geospatial Concepts lesson](pnt_line_poly.png){width=40%}
+
+</center>
+
+```{r}
+library(sf)
+library(spData)  # contains vector data describing outlines of US states
+data(us_states)
+
+### us_states is a simple feature object of type 'MULTIPOLYGON'
+str(us_states)
+
+### however, it has a different CRS than the raster we were using before
+crs(us_states)
+
+### if we want to plot on the same map, we will need to reproject to the same CRS  
+us_states_utm <- st_transform(us_states, crs(ar_rice))
+crs(us_states_utm)
+crs(ar_rice) # all good!
+```
+
