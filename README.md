@@ -5,7 +5,7 @@ Welcome to the GitHub repository for the Spatial Data in R session for the Arkan
 The general plan for today is:
 
 1. brief orientation to Rmarkdown
-2. spatial data types (point, vector, raster)
+2. spatial data types (raster & vector)
 3. map-making with the `tmap` package
 
 ## Prior to the session: 
