@@ -40,7 +40,9 @@ ar_land_use
 ### raster manipulation example
 ar_soy_rice <- calc(ar_land_use, 
                 # substitute values for all pixels where rice/soybeans are not grown to 'NA'
-                fun=function(x){x[x != 202 & x != 201] <- NA; return(x)} ) 
+                fun=function(x){x[x != 202 & x != 201] <- NA; return(x)} )
+
+ar_soy_rice
 ```
 
 ## Vector Data
@@ -82,7 +84,7 @@ After the first exercises, you should now have the following:
 1. A raster file `ar_soy_rice`containing pixels coded as either 'NA' or 202 where land use is classified as 'rice' in the map we downloaded from the AR GIS office
 2. A vector file `counties` containing coordinates for polygons of Arkansas county outlines.
 
-Now, we will build a pretty map, where the polygons are layered on top of the raster file. There are many many ways to make maps in R; for many applications I love using `tmap`, which allows you to easily customize maps with a modular, very tidyverse-style syntax. The basic structure involves two tmap elements:
+Now, we will build a pretty map, with layers of county polygons and a layer of land use pixels. There are many many ways to make maps in R; for most applications I love using `tmap`, which allows you to easily customize maps with a modular, very tidyverse-style syntax. The basic structure involves two tmap elements:
 
 ```{r, out.height="20%", fig.align="center", fig.keep = 'last'}
 library(tmap)
@@ -90,7 +92,7 @@ library(tmaptools)
 
 ### a simple tmap
 tm_shape(ar_counties_utm) + # first, specify the shape object
-  tm_polygons() # second, specify the aesthetic layer(s) for each shape object
+  tm_polygons()             # second, specify the aesthetic layer(s) for each shape object
 
 ### of course, each layer can be customized in many ways
 tm_shape(ar_counties_utm) +
@@ -101,7 +103,7 @@ tm_shape(ar_counties_utm) +
 
 ```
 
-Let's include the raster file of rice-growing areas we made earlier. To do this, we will 'layer' each shape element, so that the county borders are mapped on top of the raster layer
+Let's include the raster file of rice-growing areas we made earlier. To do this, we will 'layer' each shape element, so that the raster file is layered on top of the county polygon file
 ```{r, out.height="20%", fig.align="center", fig.keep = 'last'}
 ### a more complicated map
 tm_shape(ar_counties_utm) +
@@ -109,10 +111,12 @@ tm_shape(ar_counties_utm) +
 tm_shape(ar_soy_rice) +
   tm_raster(palette = "viridis")
 
-### whereas our response (soy/rice) is a categorical variable,
-### it is encoded as a number, hence the continuous legend
+### our response (soy/rice) is a categorical variable,
+### though it is encoded as a number, hence the continuous legend
+
 ### let's add a manual legend instead
-ar_map <- tm_shape(ar_counties_utm) +
+ar_map <- 
+tm_shape(ar_counties_utm) +
   tm_polygons() + 
 tm_shape(ar_soy_rice) +
   tm_raster(palette = "viridis", legend.show = F) +
