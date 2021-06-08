@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
   - a **resolution** (area covered by each pixel), and 
   - a **coordinate reference system (CRS)** (describes how location on a 2-D map is related to location on 3-D Earth)
 
-![Image borrowed from Data Carpentry Introduction to Geospatial Concepts lesson](raster_concept.png){width=50%}
+![Image borrowed from Data Carpentry Introduction to Geospatial Concepts lesson](images/raster_concept.png){width=50%}
 
 </center>
 
@@ -50,7 +50,7 @@ ar_soy_rice
 - points, lines and polygons
 - often stored as shapefiles (.shp)
 
-![Image borrowed from Data Carpentry Introduction to Geospatial Concepts lesson](pnt_line_poly.png){width=40%}
+![Image borrowed from Data Carpentry Introduction to Geospatial Concepts lesson](images/pnt_line_poly.png){width=40%}
 
 </center>
 
