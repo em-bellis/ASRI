@@ -16,4 +16,4 @@ The general plan for today is:
 ```
 install.packages(c("maps", "rgdal", "raster", "sp", "sf","tmap","tmaptools"), dependencies = T)
 ```
-3. Download all the files from this repository to your local machine. If you already have Git installed, the easiest way to do this will be by running `git clone https://github.com/em-bellis/ASRI2021` from the command line in the location you would like to download the repo. You can also download a zip file of the repository contents from the landing page, by clicking the green 'Code' button in the top right, and then 'Download ZIP'. 
+3. Download all the files from this repository to your local machine. If you already have Git installed, the easiest way to do this will be by running `git clone https://github.com/em-bellis/ASRI2021` from the command line in the location you would like to download the repo. You can also download a zip file of the repository contents, by clicking the green 'Code' button in the top right of this page, and then 'Download ZIP'. 
